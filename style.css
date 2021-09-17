@@ -9,24 +9,38 @@
     --grid-rows: 1;
 }
 
+body {
+    background-image: linear-gradient(to right, #0f2027, #203a43, #2c5364   );
+}
+
+h1 {
+    color: #fff;
+}
+
+
+
+.container {
+    
+}
+
 
 /* Squares */
-.container {
+.boxes {
     margin: 50px 0px 0px 150px;
     display: grid;
     gap: 0;
     height: 500px;
     width: 500px;
-     grid-template-rows: repeat(var(--grid-rows), 1fr);
+    grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-cols), 1fr);
-    border: 1px solid;
-    background-color: #fff;
+    background-color: #dee2e6;
 }
 
-
+.squares {
+    border: 1px solid #f1f3f5;
+}
 
 button {
-    width: 50px;
-    height: 50px;
+    cursor: pointer;
 }
 
