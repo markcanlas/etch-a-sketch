@@ -4,10 +4,10 @@
     box-sizing: border-box;
 }
 
-:root {
-    --grid-cols: 1;
-    --grid-rows: 1;
-}
+/* :root {
+    --grid-cols: 1 !important;
+    --grid-rows: 1 !important;
+} */
 
 body {
     background-image: linear-gradient(to right, #0f2027, #203a43, #2c5364   );

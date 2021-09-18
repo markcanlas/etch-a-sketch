@@ -1,81 +1,99 @@
 DEFAULTSIZE = 16;
-DEFAULTCOLOR = '#f1f3f5';
+DEFAULTCOLOR = '#333333';
+DEFAULTMODE = 'color'
 
 
-let size = DEFAULTSIZE;
-let color = DEFAULTCOLOR;
+let currentSize = DEFAULTSIZE;
+let currentColor = DEFAULTCOLOR;
+let currentMode = DEFAULTMODE; 
+
+function setCurrentColor(newColor) {
+  currentColor = newColor;
+}
+
+function setCurrentSize(newSize) {
+  currentSize = newSize;
+}
+
+function setCurrentMode(newMode) {
+  currentMode = newMode;
+}
+
 
 const body = document.querySelector("body");
 const box = document.querySelector(".boxes");
-const boxes = document.querySelector(".squares");
-let btn = document.createElement("button");
-const clearbtn = document.querySelector(".btn-clear");
-const colorbtn = document.querySelector('input');
-const sliderbtn = document.getElementById('sizeSlider')
-const colorValue = document.getElementById('myColor')
+const clearBtn = document.querySelector(".btn-clear");
+const sliderBtn = document.getElementById('sizeSlider');
+const colorValue = document.getElementById('myColor');
+const colorBtn = document.querySelector('.colorBtn')
+const label = document.querySelector('label');
+const rainbowBtn = document.querySelector('.rainbowBtn');
+const eraserBtn = document.querySelector('.eraserBtn');
+const classicBtn = document.querySelector('.classic');
+const gridStyleBtn = document.querySelector('.grid-style');
 
 
+clearBtn.onclick = () => reloadGrid();
+colorValue.onchange = e => setCurrentColor(e.target.value);
+sliderBtn.onchange = e => changeSize(e.target.value);
+sliderBtn.onmousemove = e => updateSizeValue(e.target.value);
+rainbowBtn.onclick = () => setCurrentMode('rainbow');
+
+classicBtn.onclick = () => {
+  console.log(box.childNodes.document.querySelectorAll('.squares'))
+}
 
 
-//change size of grids
-// sliderbtn.addEventListener('change', e => {
-//     let size = e.target.value
-//     clearGrid();
-// })
-square(16, 16);
+function clearGrid() {
+    box.innerHTML = ``;
+}
 
-//adding event listener to hover and change background color to the squares
-
-
-
-//clearing the grid
-clearbtn.addEventListener("click", e => {
+function reloadGrid() {
     clearGrid();
-});
+    square(currentSize);
+}
 
-colorbtn.addEventListener('change', e => {
-    let pickColor = colorValue.value;
-    switchColor(pickColor);
-})
+function changeSize(value){
+    setCurrentSize(value)
+    updateSizeValue(value)
+    reloadGrid()
+}
 
-//creating 16x16 grid of squares
-function square(size, size) {
+
+function updateSizeValue(value) {
+    label.innerHTML =`${value} x ${value}`;
+}
+
+
+function square(size) {
     box.style.setProperty("--grid-rows", size);
     box.style.setProperty("--grid-cols", size);
     
     for (i = 0; i < size * size; i++) {
-        let div = document.createElement("div");
-        box.appendChild(div).className = "squares";
+        const div = document.createElement("div");
+        div.classList.add('squares')
+        div.addEventListener('mouseover', switchColor)
+        box.appendChild(div)
     }
-    
+ 
 };
 
-
-box.addEventListener("mouseover", (event) => {
-    let hover = event.target.className;
-        
-    if (hover === "squares") {
-         event.target.style.backgroundColor = 'black';
-        } 
-    });
-
-
-function switchColor(colorPicker) {
-    box.addEventListener("mouseover", (event) => {
-        let hover = event.target.className;
-            
-        if (hover === "squares") {
-             event.target.style.backgroundColor = colorPicker;
-            } 
-        });
+function switchColor(colour) {
+  if (currentMode === 'rainbow') {
+    const randomR = Math.floor(Math.random() * 256)
+    const randomG = Math.floor(Math.random() * 256)
+    const randomB = Math.floor(Math.random() * 256)
+    colour.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
+  } else if (currentMode === 'color') {
+    colour.target.style.backgroundColor = currentColor
+  } else if (currentMode === 'eraser') {
+    colour.target.style.backgroundColor = '#fefefe'
+  }
 }
+    
 
-function clearGrid() {
-    let grids = box.querySelectorAll('.squares');
-    grids.forEach(grid => grid.style.cssText = '1px solid #f1f3f5');
-    switchColor('black');
-    colorValue.value;
+
+
+window.onload = () => {
+    square(DEFAULTSIZE)
 }
-
-
-
