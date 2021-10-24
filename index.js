@@ -130,7 +130,7 @@ function switchColor(colour) {
   } else if (currentMode === "color") {
     colour.target.style.backgroundColor = currentColor;
   } else if (currentMode === "eraser") {
-    colour.target.style.backgroundColor = "red";
+    colour.target.style.backgroundColor = "#dee2e6";
   }
 }
 
