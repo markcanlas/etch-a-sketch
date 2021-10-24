@@ -1,44 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Etch a Sketch</title>
-</head>
-<body>
-
-    <header class="header">
-        <h1>Etch a Sketch</h1>
+  </head>
+  <body>
+    <header>
+      <h1>Etch a Sketch</h1>
     </header>
-    
-    <div class="container">
-       <div class="btn">
-           <input type="color" id="myColor" value ="#333333">
-           <button class="colorBtn">Color</button>
-           <button class="rainbowBtn">Rainbow Color</button>
-           <button class="grid-style">Grid Style</button>
-           <button class="classic">Classic</button>
-           <button class="eraserBtn">Eraser</button>
-           <button class="btn-clear">Clear</button>
-           <input type="range" id="sizeSlider"
-           min='1'
-           max= '64'
-           value = '16'
-           name = 'volume'>
-           <label for="volume">16 x 16</label>
-       </div>
-       <div class="boxes" id="boxes"></div>
-    </div>
-    <footer class="footer">
-        <p>Copyright <span>&copy</span> markcanlas </p>
+
+    <main>
+      <div class="container">
+        <div class="btn-nav">
+          <button class="classic">Classic</button>
+          <button class="grid-style">Grid</button>
+          <button class="rainbowBtn">Rainbow</button>
+          <button class="eraserBtn">Eraser</button>
+          <button class="btn-clear">Clear</button>
+        </div>
+        <div class="slider">
+          <div class="slider-1">
+            <input
+              type="color"
+              name="color"
+              class="my-color"
+              id="myColor"
+              value="#333333"
+            />
+            <label for="color" class="colorText">Color</label>
+          </div>
+
+          <div class="slider-2">
+            <input
+              type="range"
+              id="sizeSlider"
+              min="1"
+              max="64"
+              value="32"
+              name="volume"
+            />
+            <label for="volume" class="label">32 x 32</label>
+          </div>
+        </div>
+        <div class="boxes all-box" id="boxes"></div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="attribution">
+        Coded by
+        <a href="https://github.com/markcanlas/etch-a-sketch">markcanlas</a>.
+      </div>
     </footer>
 
-
-
     <script src="index.js"></script>
-
-
-</body>
+  </body>
 </html>
